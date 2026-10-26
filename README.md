@@ -54,6 +54,40 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
+# PROGRAM:
+```
+from collections import defaultdict
+
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+
+    for neighbour in graph[start]:
+        if not visited[neighbour]:
+            dfs(graph, neighbour, visited, path)
+
+    return path
+
+graph = defaultdict(list)
+
+n, e = map(int, input("Enter nodes and edges: ").split())
+
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+
+start = '0' if '0' in graph else 'A'
+
+visited = defaultdict(bool)
+path = []
+
+print("DFS Traversal Path:", dfs(graph, start, visited, path))
+```
+# OUTPUT:
+<img width="487" height="190" alt="image" src="https://github.com/user-attachments/assets/e1c9426b-4b4e-4a09-b2d7-db5bd0b910d4" />
+
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
